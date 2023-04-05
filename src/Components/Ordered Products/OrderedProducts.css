@@ -1,0 +1,56 @@
+.all-products {
+  margin-top: 20px;
+  background-color: white;
+  box-shadow: 0 0 6px gray;
+  border-radius: 5px;
+  padding: 0 10px 10px;
+  position: sticky;
+  top: 30px;
+}
+.header {
+  padding-top: 20px;
+  font-size: large;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.grandTotal {
+  font-weight: bold;
+  font-size: medium;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.cart-list li {
+  font-size: small;
+  padding: 8px;
+  margin: 10px 0;
+  border-radius: 7px;
+  color: black;
+  background-color: rgba(221, 221, 221, 0.897);
+}
+.clearCart {
+  color: white;
+  background-color: orangered;
+  width: 100%;
+  padding: 5px;
+  border: 0;
+  border-radius: 5px;
+  margin-bottom: 7px;
+  font-size: small;
+}
+.reviewOrder {
+  color: white;
+  background-color: orange;
+  width: 100%;
+  padding: 5px;
+  border: 0;
+  border-radius: 5px;
+  font-size: small;
+}
+
+.clearCart i,
+.reviewOrder i {
+  color: white;
+  padding: 0 5px;
+}

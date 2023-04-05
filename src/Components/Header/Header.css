@@ -1,0 +1,51 @@
+.navbar {
+  padding-inline: 50px;
+  height: 60px;
+  background-color: #1c2b35;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list {
+  display: flex;
+  gap: 30px;
+}
+.list a {
+  color: white;
+  transition: 0.4s;
+  padding: 3px;
+}
+.list a:hover {
+  color: orange;
+}
+
+@media screen and (width < 500px) {
+  .navbar {
+    padding-inline: 0;
+    flex-direction: column;
+    height: auto;
+    padding: 20px;
+  }
+  .list {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+    padding: 10px;
+  }
+}
+
+.active {
+  position: relative;
+  transition-duration: 0.4s;
+}
+.active::after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: orange;
+  border-radius: 10px;
+}
