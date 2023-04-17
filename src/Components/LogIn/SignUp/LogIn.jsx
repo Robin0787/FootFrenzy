@@ -1,7 +1,17 @@
+import { GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import React from 'react';
 import { Link } from 'react-router-dom';
+import app from '../../../__firebase_Auth_';
 import google from '/googleLogo.svg';
 const Login = () => {
+    const auth = getAuth(app);
+    const googleProvider = new GoogleAuthProvider();
+    function logInWithGoogle() {
+        signInWithPopup(auth,googleProvider)
+        .then((result) => {console.log(result.user)})
+        .catch(err => {console.log(err.message)});
+    }
+
     return (
         <div className='flex justify-center items-center min-h-[calc(100vh-60px)]'>
             <form className='border rounded-md lg:w-1/4 p-5 px-8 text-gray-500 shadow-[-10px_10px_0_rgba(255,153,0,0.4)]'>
@@ -17,9 +27,9 @@ const Login = () => {
                     <span className='text-xs'>Or</span>
                     <hr className='w-2/3' />
                 </div>
-                <div className='border rounded-sm w-full py-1 font-semibold flex justify-center items-center cursor-pointer mb-2'>
+                <div onClick={logInWithGoogle} className='border rounded-sm w-full py-1 font-semibold flex justify-center items-center cursor-pointer mb-2'>
                     <img src={google} className='h-8 w-8' />
-                    <p className="text-sm">Continue with Google</p>
+                    <p className="text-sm" >Continue with Google</p>
                 </div>
             </form>
         </div>
