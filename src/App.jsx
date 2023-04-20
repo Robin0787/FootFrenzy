@@ -1,3 +1,4 @@
+import { Toaster } from 'react-hot-toast';
 import { Outlet, useNavigation } from 'react-router-dom';
 import Header from './Components/Header/Header';
 import LoadingSpinner from './Components/LoadingSpinner/LoadingSpinner';
@@ -11,6 +12,7 @@ function App() {
           navigation.state === 'loading' ? <LoadingSpinner /> : <Outlet />
         }
       </div>
+      <Toaster />
     </div>
   )
 }
