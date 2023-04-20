@@ -47,7 +47,7 @@ const Login = () => {
                 <label htmlFor="confirmPass" className='text-sm'>Password</label><br />
                 <input type="password" name="password" className='w-full border mt-1 mb-2 duration-300 border-gray-300 rounded-sm focus:outline-0 focus:ring ring-gray-300 p-1' required/>
                 <div className="text-xs mb-3">
-                    <span>Forget password? <p className="text-blue-600" onClick={resetPassword}>Reset</p></span>
+                    <span>Forget password? <button className="text-blue-600" onClick={resetPassword}>Reset</button></span>
                 </div>
                 <button type="submit" className='bg-orange-300 text-md duration-500 hover:bg-orange-500 text-white w-full font-semibold py-2 mt-3'>Login</button>
                 <p className='text-sm text-center text-gray-700 mt-1'>Don't have an account? <Link to='/signUp' className='text-blue-600'>Sign Up</Link></p>
