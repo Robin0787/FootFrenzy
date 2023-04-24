@@ -1,3 +1,4 @@
+import { EyeIcon, EyeSlashIcon } from '@heroicons/react/24/solid';
 import { GoogleAuthProvider, createUserWithEmailAndPassword, getAuth, sendEmailVerification, signInWithPopup, updateProfile } from 'firebase/auth';
 import React, { useState } from 'react';
 import toast from 'react-hot-toast';
@@ -7,14 +8,18 @@ import google from '/googleLogo.svg';
 const SignUp = () => {
     const [validatePass, setValidatePass] = useState('');
     const [isPassOk, setIsPassOk] = useState(false);
+    const [showPass, setShowPass] = useState(false);
+    const [showEyeIcon, setShowEyeIcon] = useState(false);
     const auth = getAuth(app);
     const googleProvider = new GoogleAuthProvider();
+
+
     function signUpWithGoogle() {
         signInWithPopup(auth,googleProvider)
         .then(result => {toast.success('SignUp Successful')})
         .catch(err => {toast.error(err.message)})
     }
-    // Form submission
+
     const handleFormSubmit = (e) => {
         e.preventDefault();
         if(!isPassOk) {
@@ -33,32 +38,41 @@ const SignUp = () => {
                 sendEmailVerification(result.user)
                 .then(() => {toast.success('Verification email sent to the User')});
             })
-            .catch(err => {
+            .catch(() => {
                 toast.error('Email already in use');
             })
         }
     }
-    // Validating password based on condition.
+
     const handlePassChange = (e) => {
         const pass = e.target.value;
         if(!/(?=.*[A-Z])/.test(pass)) {
             setValidatePass('Password must contain a uppercase letter');
-            return;
         }
         else if (!/(?=.*[0-9].*[0-9])/.test(pass)) {
             setValidatePass('Password must contain two numbers');
-            return;
         }else if(!/(?=.*[@#$%&])/.test(pass)) {
             setValidatePass('Password must contain a special character');
-            return;
         } 
         else if(pass.length < 6) {
             setValidatePass('Password must contain minimum 6 characters');
-            return;
         }
         else {
             setValidatePass('');
             setIsPassOk(true);
+        }
+        showEyeIconOnPass(pass);
+        console.log(pass);
+    }
+
+    function showEyeIconOnPass(value) {
+        console.log(value);
+        if(value.length > 0) {
+            setShowEyeIcon(true);
+        } 
+        else {
+            setShowEyeIcon(false);
+            setValidatePass('');
         }
     }
 
@@ -71,9 +85,22 @@ const SignUp = () => {
                 <label htmlFor="email" className='text-sm'>Email</label><br />
                 <input type="email" name='email' className='w-full border mt-1 mb-5 duration-300 border-gray-300 rounded-sm focus:outline-0 focus:ring ring-gray-300 p-1' required/>
                 <label htmlFor="password" className='text-sm'>Password</label><br />
-                <input type="password" name='password' onChange={handlePassChange} className='w-full border mt-1 mb-2 duration-300 border-gray-300 rounded-sm focus:outline-0 focus:ring ring-gray-300 p-1' required/><br />
-                <p className="text-xs mb-3 text-red-500">{validatePass}</p>
-                <button type='submit' className='bg-orange-300 text-md duration-500 hover:bg-orange-500 text-white w-full font-semibold py-2 mt-3'>Sign UP</button>
+                <div className='relative'>
+                <div className="relative">
+                <input type={showPass ? "text" : 'password'} name='password' onChange={handlePassChange} className='w-full border mt-1 mb-2 duration-300 border-gray-300 rounded-sm focus:outline-0 focus:ring ring-gray-300 p-1' required/><br />
+                {
+                    showEyeIcon ? 
+                    showPass ? 
+                    <EyeIcon  className='h-4 w-4 text-gray-500 cursor-pointer absolute top-[14px] right-3' onClick={() => {setShowPass(!showPass)}}/> 
+                    : 
+                    <EyeSlashIcon className='h-4 w-4 text-gray-500 cursor-pointer absolute top-[14px] right-3' onClick={() => {setShowPass(!showPass)}}/>
+                    :
+                    ''
+                }
+                </div>
+                <p className="text-xs mb-3 text-red-500 absolute top-11">{validatePass}</p>
+                </div>
+                <button type='submit' className='bg-orange-300 text-md duration-500 hover:bg-orange-500 text-white w-full font-semibold py-2 mt-10'>Sign UP</button>
                 <p className='text-sm text-center text-gray-700 mt-2'>Already have an account? <Link to='/login' className='text-blue-600'>Login</Link></p>
                 <div className="flex justify-between items-center gap-3 my-5">
                     <hr className='w-2/3' />
