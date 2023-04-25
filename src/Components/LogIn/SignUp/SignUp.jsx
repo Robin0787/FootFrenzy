@@ -51,7 +51,7 @@ const SignUp = () => {
         }
         else if (!/(?=.*[0-9].*[0-9])/.test(pass)) {
             setValidatePass('Password must contain two numbers');
-        }else if(!/(?=.*[@#$%&])/.test(pass)) {
+        }else if(!/(?=.*[?!@#$%&*^-])/.test(pass)) {
             setValidatePass('Password must contain a special character');
         } 
         else if(pass.length < 6) {
