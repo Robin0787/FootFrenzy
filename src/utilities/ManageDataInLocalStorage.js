@@ -2,10 +2,10 @@
 
 const setData = (newProduct) => {
     let allProducts = getData();
-    const isExists = allProducts.find(pd => pd.id === newProduct.id);
+    const isExists = allProducts.find(pd => pd._id === newProduct._id);
     if(isExists){
         allProducts.forEach(pd => {
-            if(pd.id === newProduct.id) {
+            if(pd._id === newProduct._id) {
                 pd.quantity++;
             }
         })

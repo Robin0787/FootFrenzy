@@ -8,11 +8,11 @@ const Product = ({product,addToCart}) => {
             <img src={img} alt="" />
             <div className='product-info'>
                 <h2 className='product-name'>{product.name}</h2>
-                <div className='seller-ratings'>
+                <div className='seller-ratings text-gray-500'>
                 <p className='desc'>{seller}</p>
                 <p className='desc'>{ratings} <i className="fa-solid fa-star"></i></p>
                 </div>
-                <p className='price'>${price}</p>
+                <p className='price text-gray-500'>${price}</p>
             </div>
                 <button className='addToCart' onClick={addToCart.bind(this,product)}><i className="fa-solid fa-cart-arrow-down"></i></button>
         </div>

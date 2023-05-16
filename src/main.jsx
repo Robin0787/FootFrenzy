@@ -23,7 +23,7 @@ const router = createBrowserRouter([
       {
         path: '/products',
         element: <Shop />,
-        loader: () => fetch('products.json')
+        loader: () => fetch('https://foot-frenzy-server.vercel.app/total-products')
       },
       {
         path: 'order-review',
@@ -48,7 +48,7 @@ const router = createBrowserRouter([
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  <>
     <RouterProvider router={router}/>
-  </React.StrictMode>,
+  </>,
 )
